@@ -10,9 +10,9 @@ export const databaseProviders = [
         port: 3308,
         username: 'root',
         password: 'root',
-        database: 'tarefas_db',
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
+        database: 'gestao_facil_db',
+        entities: [__dirname + '/../**/*.entity.{ts,js}'],
+        synchronize: false,
       });
 
       return dataSource.initialize();
