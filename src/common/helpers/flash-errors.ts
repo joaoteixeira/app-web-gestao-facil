@@ -7,7 +7,9 @@ export const flashErrors = (req, res, next) => {
 
   if (flashErrors) {
     res.locals.flashErrors = flashErrors;
+    res.locals.errors = flashErrors;
     req.session.flashErrors = null;
+    req.session.errors = null;
   }
 
   if (old) {
@@ -23,6 +25,7 @@ export const setFlashErrors = (
   errors: string[] | string,
 ) => {
   req.session['flashErrors'] = errors;
+  req.session['errors'] = errors;
 };
 
 export const setOld = (req: Partial<Request>, old: any) => {
