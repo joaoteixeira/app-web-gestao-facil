@@ -37,9 +37,17 @@
                {{#if flashErrors}}
                <div class='alert alert-danger'>
                   {{#each flashErrors}}
-                  <p style="margin: 0; padding: 0;">
-                     {{message}}
-                  </p>
+                  <p style="margin: 0; padding: 0;"> {{message}} </p>
+                  {{/each}}
+               </div>
+               {{/if}}
+
+               {{#if flashErrors}}
+               <div class='alert alert-danger'>
+                  {{#each flashErrors}}
+                     {{#each messages}}
+                        <p style="margin: 0; padding: 0;"> {{this}} </p>
+                     {{/each}}
                   {{/each}}
                </div>
                {{/if}}
