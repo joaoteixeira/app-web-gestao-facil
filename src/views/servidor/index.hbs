@@ -1,5 +1,12 @@
 {{#> main}}
 {{#*inline "content"}}
+{{#if flashErrors}}
+<div class='alert alert-danger'>
+    {{#each flashErrors}}
+    <p style="margin: 0; padding: 0;"> {{this}} </p>
+    {{/each}}
+</div>
+{{/if}}
 <div class="card w-100">
     <div class="card-body p-4">
         <div class="row">

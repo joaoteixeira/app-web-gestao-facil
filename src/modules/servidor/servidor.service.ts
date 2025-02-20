@@ -3,13 +3,39 @@ import { Servidor } from './servidor.entity';
 
 @Injectable()
 export class ServidorService {
-  async getAll() {
-    return await Servidor.find();
-  }
+    async getAll() {
+        return await Servidor.find({
+            order: { nome: 'ASC' }
+        });
+    }
 
-  async create(data: any) {
-    const servidor = Servidor.create({ ...data });
+    async findOneById(id: number) {
+        return await Servidor.findOne({ where: { id: id  } });
+    }
 
-    return await servidor.save();
-  }
+    async create(dados: any) {
+        const servidor = Servidor.create({ ...dados });
+
+        return await servidor.save();
+    }
+
+    async update(id: number, dados: any) {
+        const servidor = await this.findOneById(id);
+
+        if (!servidor) {
+            return null;
+        }
+
+        return await Servidor.update(id, { ...dados });
+    }
+
+    async delete(id: number) {
+        const servidor = await this.findOneById(id);
+
+        if (!servidor) {
+            return null;
+        }
+
+        return await Servidor.delete(id);
+    }
 }

@@ -7,12 +7,13 @@ export const databaseProviders = [
       const dataSource = new DataSource({
         type: 'mysql',
         host: 'localhost',
-        port: 3308,
+        port: 3360,
         username: 'root',
         password: 'root',
-        database: 'gestao_facil_db',
-        entities: [__dirname + '/../**/*.entity.{ts,js}'],
+        database: 'gestao_facil_bd',
+        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: false,
+        logging: false,
       });
 
       return dataSource.initialize();

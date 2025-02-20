@@ -1,3 +1,3 @@
 export interface IValidator {
-  validate(data: any): Promise<this>;
+  validate(data: any, update?: boolean): Promise<this>;
 }
