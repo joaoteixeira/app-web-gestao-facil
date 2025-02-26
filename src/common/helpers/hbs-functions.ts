@@ -7,12 +7,17 @@ const helpers = {
   json: (value: any) => { return JSON.stringify(value) },
   'error-message': (errors: any[], key: string) => errors?.find(i => i.property == key)?.message,
   'error-messages': (errors: any[], key: string) => errors?.find(i => i.property == key)?.messages,
-  setValue:(valueDefault: any, valueCheck?: any) => {
+  setValue: (valueDefault: any, valueCheck?: any) => {
     if (!valueCheck) return valueDefault;
     if (valueDefault && valueCheck) return valueDefault;
 
     return valueCheck;
   },
+  'selected-option': (id: any, compareId: any, oldId?: any) => { 
+    if(oldId) return id == oldId ? 'selected' : '';
+
+    return id == compareId ? 'selected' : '';
+  }
 };
 
 export const hbsRegisterHelpers = (hbs: any) => {

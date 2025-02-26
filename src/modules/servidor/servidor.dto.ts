@@ -11,6 +11,9 @@ export class ServidorDto {
 
     @IsNotEmpty({ message: 'O siape é obrigatório' })
     siape: string;
+
+    @IsNotEmpty({ message: 'A seleção de um campus é obrigatório' })
+    campus: number;
 }
 
 export class ServidorUpdateDto extends PartialType(ServidorDto) { }
