@@ -5,12 +5,16 @@ import { Servidor } from './servidor.entity';
 export class ServidorService {
     async getAll() {
         return await Servidor.find({
+            relations: ['campus'],
             order: { nome: 'ASC' }
         });
     }
 
     async findOneById(id: number) {
-        return await Servidor.findOne({ where: { id: id  } });
+        return await Servidor.findOne({ 
+            where: { id }, 
+            relations: ['campus'] 
+        });
     }
 
     async create(dados: any) {

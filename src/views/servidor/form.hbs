@@ -107,13 +107,14 @@
                               class="form-control ps-2" name="siape" placeholder="Informe o número do SIAPE."> </div>
                      </div>
                      <div class="mb-4">
-                        {{!-- <label class="form-label">Country</label>
-                        <select class="form-select" aria-label="Default select example">
-                           <option selected="">India</option>
-                           <option value="1">United Kingdom</option>
-                           <option value="2">Srilanka</option>
+                        <label class="form-label">Campus</label>
+                        <select class="form-select" name="campus">
+                           <option>Selecione um campus</option>
+
+                           {{#each campi}}
+                              <option value="{{this.id}}" {{selected-option this.id ../servidor.campus.id ../old.campus}}>{{this.nome}}</option>
+                           {{/each}}
                         </select>
-                        --}}
                      </div>
                      <div class="mb-4"> {{!-- <label for="exampleInputBirthDate" class="form-label">Birth Date</label>
                         <input id="exampleInputBirthDate" class="form-control" type="date"> --}}

@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Campus } from '../campus/campus.entity';
 
 @Entity()
 export class Servidor extends BaseEntity {
@@ -13,4 +14,8 @@ export class Servidor extends BaseEntity {
 
   @Column({ name: 'siape_ser' })
   siape: number;
+
+  @ManyToOne(() => Campus, (campus) => campus.servidores)
+  @JoinColumn({ name: 'id_cam_fk', referencedColumnName: 'id' })
+  campus: Campus;
 }

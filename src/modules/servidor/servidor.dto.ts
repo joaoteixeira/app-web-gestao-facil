@@ -1,5 +1,5 @@
 import { PartialType } from "@nestjs/mapped-types";
-import { IsNotEmpty, Min, MinLength } from "class-validator";
+import { IsNotEmpty, IsNumberString, Min, MinLength } from "class-validator";
 
 export class ServidorDto {
     @IsNotEmpty({ message: 'O nome é obrigatório' })
@@ -13,6 +13,7 @@ export class ServidorDto {
     siape: string;
 
     @IsNotEmpty({ message: 'A seleção de um campus é obrigatório' })
+    @IsNumberString({}, { message: 'A seleção de um campus é obrigatório' })
     campus: number;
 }
 

@@ -3,10 +3,14 @@ import { ServidorService } from './servidor.service';
 import { Response } from 'express';
 import { ServidorValidator } from './servidor.validator';
 import { setFlashErrors, setOld } from 'src/common/helpers/flash-errors';
+import { CampusService } from '../campus/campus.service';
 
 @Controller('servidores')
 export class ServidorController {
-    constructor(private readonly service: ServidorService) { }
+    constructor(
+        private readonly service: ServidorService, 
+        private readonly campusService: CampusService
+    ) { }
 
     @Get()
     @Render('servidor/index')
@@ -18,11 +22,12 @@ export class ServidorController {
     //Abrir o formulario
     @Get('novo')
     @Render('servidor/form')
-    createForm() {
-        return {};
+    async createForm() {
+        const campi = await this.campusService.getAll();
+
+        return { campi };
     }
 
-    //Rota para Salvar os dados de cadastro
     @Post('novo')
     async createSave(@Body() dados, @Res() response: Response, @Req() request) {
         try {
@@ -54,7 +59,9 @@ export class ServidorController {
                 return response.redirect('/servidores');
             }
 
-            return response.render('servidor/form', { servidor });
+            const campi = await this.campusService.getAll();
+
+            return response.render('servidor/form', { servidor, campi });
         } catch {
             setFlashErrors(request, ['Ocorreram erros ao buscar informações.']);
             return response.redirect('/servidores');

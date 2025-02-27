@@ -8,9 +8,9 @@ export class CampusController {
     constructor(private readonly service: CampusService) { }
 
     @Get()
-    @Render('campus/index')
+    // @Render('campus/index')
     async index() {
-        return { servidores: await this.service.getAll() };
+        return { campi: await this.service.getAll() };
     }
 
 
